@@ -7,16 +7,10 @@ fn main() {
     println!("Current team is {team}");
     let filename = "doc/list_celebrities.txt";
     let words:String = import_word(filename);
-    let v: Vec<&str> = words.split('\n').collect();
-    let mut vec = Vec::new();
-    let it = v.iter();
-    for el in it {
-        if !el.contains("\t") && !el.is_empty(){
-            vec.push(el);
-        }
-    }
-    println!("{:?}", v);
-    println!("{:?}", vec);
+    let words_vec: Vec<&str> = words.split('\n')
+        .into_iter().filter(|x| !x.contains("\t") && !x.is_empty()) 
+        .collect();
+    println!("{:?}", words_vec);
 
 }
 
